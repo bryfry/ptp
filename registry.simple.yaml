@@ -1,0 +1,16 @@
+---
+http:
+  routers:
+    registry:
+      rule: 'Host(`registry-1.alta3.com`)'
+      service: "registry"
+      entryPoints:
+       - "websecure"
+      tls:
+        certResolver: "weble"
+  services:
+    registry:
+      loadBalancer:
+        servers:
+         - url: "http://registry:5000"
+

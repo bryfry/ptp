@@ -1,0 +1,21 @@
+version: '3'
+services:
+    registry:
+        ports:
+        - 5000:5000
+        image: registry:2
+        restart: always
+        environment:
+          REGISTRY_PROXY_REMOTEURL: "https://registry-1.docker.io"
+    traefik:
+        image: traefik:2.3.3
+        restart: always
+        volumes:
+          # TODO env vars
+          - ${RUN_DIR}/traefik/traefik.d:/etc/traefik.d/
+          - ${RUN_DIR}/traefik/certs:/etc/traefik/certs/
+        env_file: .env
+        ports:
+          - 80:80
+          - 443:443
+ 

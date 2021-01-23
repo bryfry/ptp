@@ -1,0 +1,14 @@
+sudo apt update;
+sudo apt install -y docker docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+mkdir traefik
+mkdir traefik/traefik.d
+mkdir traefik/certs
+# create docker-compose.yml
+# create .env
+# create traefik/traefik.d/registry.yaml
+set -a 
+source .env
+sudo --preserve-env docker-compose up -d
+sudo docker-compose logs -f --tail 100 
